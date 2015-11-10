@@ -1,0 +1,13 @@
+isy usb http://daniel-lnx.blogspot.de/2013/01/raspberry-pi-and-isy-usb-wireless-micro.html
+
+http://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
+Also an entry in rc.local was needed to autostart hostapd
+
+wiringPi: wiringPi.com/download-and-install/
+NOTE: To compile programs with wiringPi, you need to add:
+    -lwiringPi
+  to your compile line(s) To use the Gertboard, MaxDetect, etc.
+  code (the devLib), you need to also add:
+    -lwiringPiDev
+  to your compile line(s).
+
