@@ -42,4 +42,4 @@ git add $file
 
 echo "Commiting new module"
 git commit -a -m "Created new Module $mod_name"
-git branch $mod_name
+git checkout $mod_name
