@@ -1,0 +1,66 @@
+    1  sudo su
+    2  exit
+    3  sudo su
+    4  i2cdetect -y 1
+    5  sudo su
+    6  ls -la /dev/i*
+    7  su
+    8  sudo su
+    9  su
+   10  sudo su
+   11  i2cdetect -y 1
+   12  sudo su
+   13  i2cdetect -y 1
+   14  cd 
+   15  ls
+   16  ll
+   17  ls -la
+   18  git clone
+   19  git clone christian@skynet:/home/christian/git/explorer
+   20  ls
+   21  cd explorer/
+   22  ls
+   23  mkdir playground
+   24  cd playground/
+   25  mkdir gyro
+   26  cd gyro/
+   27  vi main.c
+   28  git add main.c
+   29  git commit -a -m "adding first test programm, Gryoskop mesurement via i2c"
+   30  git config --global user.email "c.spreng@zoho.com"
+   31  git config --global user.name "Christian Spreng"
+   32  git commit -a -m "adding first test programm, Gryoskop mesurement via i2c"
+   33  git push
+   34  cd ..
+   35  rm -r explorer/
+   36  rm -rf explorer/
+   37  git clone christian@skynet:/home/christian/git/explorer
+   38  cd explorer/
+   39  git pull
+   40  ls
+   41  cd playground/
+   42  ls
+   43  cd gyro/
+   44  ls
+   45  gcc main.c 
+   46  ls
+   47  ./a.out 
+   48  git status
+   49  cd ..
+   50  vi .gitignore
+   51  git status
+   52  git add .gitignore 
+   53  git commit -a -m "Main gitingore File"
+   54  git push
+   55  init 0
+   56  sudo init 0
+   57  cd explorer/playground/gyro/
+   58  i2cdump -y 1 0x68
+   59  i2cset -y 1 0x68 0x6b 32
+   60  i2cdump -y 1 0x68
+   61  vi main.c 
+   62  gcc -std=c99 main.c -o prog && ./prog
+   63  i2cdump -y 1 0x68
+   64  gcc -std=c99 main.c -o prog && ./prog
+   65  history 
+   66  history > hist
