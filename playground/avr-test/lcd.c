@@ -1,6 +1,3 @@
-//USE Port B for LCD, with Serial Output via shift reg for Data
-//USE Port D for Serial Output
-
 #include <avr/io.h>
 #define F_CPU 1000000UL
 #include <util/delay.h>
