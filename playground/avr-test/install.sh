@@ -1,3 +1,6 @@
+rm *.o;
+rm *.hex;
+rm *.elf;
 avr-gcc  -Wall -Os -mmcu=attiny2313 -o blink.o  -c $1 
 avr-gcc -Wall -Os -mmcu=attiny2313 blink.o -o blink.elf
 avr-size --format=avr --mcu=attiny2313 blink.elf 

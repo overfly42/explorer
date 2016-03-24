@@ -33,7 +33,7 @@ void setParallel(uint8_t data);
 void setLetter(uint8_t data);
 void init(void);
 void writeData(void);
-uint8_t letter[16];//16 TestLetter for LCD 
+uint8_t letter[17];//16 TestLetter for LCD 
 uint8_t bitMask(uint8_t pos, uint8_t val);
 
 int main(void)
@@ -42,13 +42,14 @@ int main(void)
 	DDRB = 0xFF;//Set all PORT B pins to Output for LCD
 	uint8_t i = 0;
 	i=0;
-	_delay_ms(100);//Display has to wait for more than 15ms
 	init();
 	while(1)
 	{
 	//	setParallel(i++);
-		setLetter(letter[((++i)&0x0F)]);
-		_delay_ms(1000);
+		setLetter(letter[i]);
+		i++;
+		i = i>17?0:i;
+		_delay_ms(100);
 	}
 }
 void setParallel(uint8_t data)
@@ -87,23 +88,41 @@ void init (void)
 {
 	uint8_t i = 0;
 	//setting the letters
-	letter[i++] = 0b01000001;
-	letter[i++] = 0b01000010;
-	letter[i++] = 0b01000011;
-	letter[i++] = 0b01000100;
-	letter[i++] = 0b01000101;
-	letter[i++] = 0b01000110;
-	letter[i++] = 0b01000111;
-	letter[i++] = 0b01001000;
-	letter[i++] = 0b01001001;
-	letter[i++] = 0b01001010;
-	letter[i++] = 0b01001011;
-	letter[i++] = 0b01001100;
-	letter[i++] = 0b01001101;
-	letter[i++] = 0b01001110;
-	letter[i++] = 0b01001111;
-	letter[i++] = 0b01010000;
+	letter[i++] = 'I';//0b01000001;
+	letter[i++] = ' ';//0b01000010;
+	letter[i++] = 'L';//0b01000011;
+	letter[i++] = 'O';//0b01000100;
+	letter[i++] = 'V';//0b01000101;
+	letter[i++] = 'E';//0b01000110;
+	letter[i++] = ' ';//0b01000111;
+	letter[i++] = 'M';//0b01001000;
+	letter[i++] = 'Y';//0b01001001;
+	letter[i++] = ' ';//0b01001010;
+	letter[i++] = 'W';//0b01001011;
+	letter[i++] = 'I';//0b01001100;
+	letter[i++] = 'N';//0b01001101;
+	letter[i++] = 'N';//0b01001110;
+	letter[i++] = 'I';//0b01001111;
+	letter[i++] = 'E';//0b01010000;
+	letter[i++] = ' ';
 	//Init the Display
+	PORTB = 0;
+	setParallel(1);//Clear Data;
+	writeData();
+	setParallel(2);//Return home, with DRam and Display
+	writeData();
+	//8: Display/Cursor Control
+	//4: Display
+	//2: Cursor
+	//1: Curosr Blink
+	setParallel(8 | 4 | 2 | 1);
+	writeData(); 
+	//32: Function Set,
+	//16: 8Bit Data
+	//8: 2Lines
+	//4: 5x10 Dots
+	setParallel(32 | 16 | 8 | 4 );
+	writeData();
 /* Works more or less
 	//Set Display Control to defined Values
 	PORTB = 0;//There should nothing active on PORT B on this time
@@ -130,6 +149,7 @@ uint8_t bitMask(uint8_t pos, uint8_t val)
 void writeData(void)
 {
 		PORTB |= P_ENABLE;//Enable Write to Display
-		_delay_ms(10);
-		PORTB &= 0xFE;//First disable	
+		_delay_ms(100);
+		PORTB &= 0xFE;//First disable
+			
 }
