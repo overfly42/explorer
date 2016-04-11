@@ -34,7 +34,6 @@ void setLetter(uint8_t data);
 void init(void);
 void writeData(void);
 uint8_t letter[17];//16 TestLetter for LCD 
-uint8_t bitMask(uint8_t pos, uint8_t val);
 
 int main(void)
 {
@@ -45,7 +44,6 @@ int main(void)
 	init();
 	while(1)
 	{
-	//	setParallel(i++);
 		setLetter(letter[i]);
 		i++;
 		i = i>17?0:i;
@@ -59,17 +57,11 @@ void setParallel(uint8_t data)
 	//PD2 --> OE
 	//PD3 --> MR 
 	//PD4 --> DS
-//	PORTD = EMPTY_SHIFT_1;//Prepair
-//		_delay_ms(100);
-//	PORTD = EMPTY_SHIFT_2;//Rising edge
 	uint8_t i = 0;
 	for(i = 0; i < 8; i++)
 	{
-//		_delay_ms(100);
 		PORTD = INPUT_PREPAIR;
-//		_delay_ms(100);
 		PORTD = INPUT_PREPAIR | (((data>>i)&1)<<4);
-//		_delay_ms(100);
 		PORTD |= INPUT_WRITE; 
 	}
 	PORTD = SET_OUTPUT_1;//prepair
@@ -123,28 +115,6 @@ void init (void)
 	//4: 5x10 Dots
 	setParallel(32 | 16 | 8 | 4 );
 	writeData();
-/* Works more or less
-	//Set Display Control to defined Values
-	PORTB = 0;//There should nothing active on PORT B on this time
-	setParallel(32 | 16 | 8);//See Page 44	
-	writeData();
-	setParallel(8 | 4 | 2);
-	writeData();
-	setParallel(4 | 2 );
-	writeData();
-	PORTB |= P_REG_SELECT;	
-	//Clear Display
-	setParallel(1);
-	writeData();
-*/	
-}
-uint8_t bitMask(uint8_t pos, uint8_t val)
-{
-	uint8_t data = 0;
-	uint8_t i;
-	for(i = 0;i<8;i++)//8 Bit
-		data |= (i == pos ? val : 1) << i;
-	return data;
 }
 void writeData(void)
 {
