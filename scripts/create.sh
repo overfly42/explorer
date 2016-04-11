@@ -42,3 +42,5 @@ git add $file
 
 echo "Commiting new module"
 git commit -a -m "Created new Module $mod_name"
+git checkout -b $mod_name
+git push --set-upstream origin infoDisplay
