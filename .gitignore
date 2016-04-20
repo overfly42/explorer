@@ -3,3 +3,6 @@ install/RTL8188-hostapd-1.1
 bin
 doc/tmp
 .metadata
+*.elf
+*.hex
+*.o

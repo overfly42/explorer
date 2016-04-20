@@ -11,3 +11,8 @@ NOTE: To compile programs with wiringPi, you need to add:
     -lwiringPiDev
   to your compile line(s).
 
+Programming atiny:
+http://kevincuzner.com/2013/05/27/raspberry-pi-as-an-avr-programmer/
+for atiny2313 set bautrate to 100000
+#https://learn.adafruit.com/program-an-avr-or-arduino-using-raspberry-pi-gpio-pins/installation
+#http://www.mikrocontroller.net/articles/Raspberry_Pi_als_Universalprogrammer
