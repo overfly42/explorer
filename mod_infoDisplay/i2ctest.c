@@ -1,6 +1,11 @@
 #include <avr/io.h>
 #define F_CPU 1000000UL
 #include <util/delay.h>
+#ifndef _I2C_BUFFER
+	#define _I2C_BUFFER
+	#define buffer_size 50
+#endif
+#include "../mod_microcontroller/src/usiTwiSlave.h"
 
 //Shift Register
 #define SHCP 	1
@@ -24,7 +29,6 @@ uint8_t redVal;
 
 int main(void)
 {
-	uint8_t i = 0;
 	init();
 	while(1)
 	{
