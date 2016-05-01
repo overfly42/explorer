@@ -64,8 +64,8 @@ void    usiTwiSlaveInit(uint8_t ownAddress);	// send slave address
 
 //#################################################################### variables
 
-#ifndef _I2C_BUFFER
-	#warning buffer_size within _I2C_BUFFER not set, setting to default 16 bytes
+#ifndef buffer_size
+	#warning buffer_size for i2c buffer not set, setting to default 16 bytes
 	#define buffer_size 16						     //in bytes (2..254), change ONLY here!!!!!
 #endif
 
