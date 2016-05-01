@@ -7,7 +7,7 @@
 #define P_REG_SELECT 2
 #define P_READWRITE 4
 #define S_ENABLE 0
-#define S_REG_SELECT 1
+#define S_REG_SELECT 4
 #define S_READWRITE 2
 #define DATA_REG 1
 #define FUNC_REG 0
@@ -47,7 +47,7 @@ int main(void)
 		setLetter(letter[i]);
 		i++;
 		i = i>17?0:i;
-		_delay_ms(100);
+		_delay_ms(200);
 	}
 }
 void setParallel(uint8_t data)
@@ -65,7 +65,7 @@ void setParallel(uint8_t data)
 		PORTD |= INPUT_WRITE; 
 	}
 	PORTD = SET_OUTPUT_1;//prepair
-		_delay_ms(100);
+		_delay_ms(200);
 	PORTD = SET_OUTPUT_2;//Raising Edge
 }
 
@@ -119,7 +119,7 @@ void init (void)
 void writeData(void)
 {
 		PORTB |= P_ENABLE;//Enable Write to Display
-		_delay_ms(100);
+		_delay_ms(200);
 		PORTB &= 0xFE;//First disable
 			
 }
