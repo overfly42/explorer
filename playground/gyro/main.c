@@ -17,10 +17,12 @@ void scan_i2c_bus(int device)
 	/* Adressbereich 7 Bit */
 	for (port = 0; port < 127; port++)
 	{
+	printf("Checking %d\n",port);
 		if (ioctl(device, I2C_SLAVE, port) < 0)
 			perror("ioctl() I2C_SLAVE failed\n");
 		else
 		{
+		printf("found sonting here\n");
 			/* kann gelesen werden? */
 			res = i2c_smbus_read_byte(device);
 			if (res >= 0)

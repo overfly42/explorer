@@ -1,29 +1,9 @@
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #define F_CPU 1000000UL
 #include <util/delay.h>
-#ifndef _I2C_BUFFER
-	#define _I2C_BUFFER
-	#define buffer_size 50
-#endif
+#include "i2ctest.h"
 #include "../mod_microcontroller/src/usiTwiSlave.h"
-
-//Shift Register
-#define SHCP 	1
-#define STCP 	2
-#define OE 		4
-#define MR 		8
-#define DS		16
-
-#define EMPTY_SHIFT_1 0
-#define EMPTY_SHIFT_2 STCP
-#define SET_OUTPUT_1 MR
-#define SET_OUTPUT_2 (MR | STCP)
-#define INPUT_PREPAIR MR
-#define INPUT_WRITE (MR | SHCP)
-
-void setParallel(uint8_t data);
-void init(void);
-void writeData(void);
 
 uint8_t redVal;
 
@@ -63,6 +43,9 @@ void init (void)
 	DDRB = 0xFF;//Set all PORT B pins to Output for LCD
 	//initialize variables
 	redVal = 0;
+	//i2c config
+	usiTwiSlaveInit(0b00010000);
+	sei();//Enable interrupts
 }
 void writeData(void)
 {

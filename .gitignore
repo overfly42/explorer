@@ -6,3 +6,4 @@ doc/tmp
 *.elf
 *.hex
 *.o
+playground/gyro/gyro
