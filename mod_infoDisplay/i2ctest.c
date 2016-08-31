@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #define F_CPU 1000000UL
@@ -10,9 +11,12 @@ uint8_t redVal;
 int main(void)
 {
 	init();
+	txbuffer[0] = 0;
+	txbuffer[1] = 1;
+	txbuffer[2] = 2;	
+	txbuffer[3] = 'A';
 	while(1)
 	{
-		redVal++;
 		writeData();
 		_delay_ms(200);
 	}
@@ -49,5 +53,6 @@ void init (void)
 }
 void writeData(void)
 {
-	setParallel(redVal);
+	txbuffer[1] = rxbuffer[1];
+	setParallel(rxbuffer[1]);
 }

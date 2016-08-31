@@ -1,6 +1,7 @@
-#include <avr/io.h>
+#ifndef I2C_TEST
+#include <stdint.h>
 #ifndef buffer_size_
-	#define buffer_size 5 
+	#define buffer_size 24 
 #endif
 
 //Shift Register
@@ -20,4 +21,4 @@
 void setParallel(uint8_t data);
 void init(void);
 void writeData(void);
-
+#endif
